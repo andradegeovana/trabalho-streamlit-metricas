@@ -10,6 +10,24 @@ st.title('Análise Relatório de Serviços de TI')
 st.write('## Dados Carregados')
 st.dataframe(df)
 
+st.write('## Evolução das ocorrências por mês')
+df['Ano_Mes'] = df['Aberto em'].astype(str).str.slice(0, 7)
+ocorrencias_por_mes = df['Ano_Mes'].value_counts().sort_index()
+
+plt.figure(figsize=(10, 6))
+plt.plot(ocorrencias_por_mes.index, ocorrencias_por_mes.values, color='skyblue', marker='o')
+
+for i, v in enumerate(ocorrencias_por_mes.values):
+    plt.text(i, v + 5, str(v), color='skyblue', ha='center', fontsize=10)
+
+plt.xlabel('Data', fontsize=12)
+plt.ylabel('Ocorrências', fontsize=12)
+plt.ylim(0, max(ocorrencias_por_mes.values) + 20)
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.2)
+st.pyplot(plt)
+
 st.write('## Divisão por tipo de ocorrência')
 plt.figure()
 colors = ('lime', 'skyblue', 'yellow', 'orange')
@@ -58,20 +76,4 @@ plt.tight_layout()
 plt.subplots_adjust(hspace=0.5)
 st.pyplot(plt)
 
-st.write('## Evolução das ocorrências por mês')
-df['Ano_Mes'] = df['Aberto em'].astype(str).str.slice(0, 7)
-ocorrencias_por_mes = df['Ano_Mes'].value_counts().sort_index()
 
-plt.figure(figsize=(10, 6))
-plt.plot(ocorrencias_por_mes.index, ocorrencias_por_mes.values, color='skyblue', marker='o')
-
-for i, v in enumerate(ocorrencias_por_mes.values):
-    plt.text(i, v + 5, str(v), color='skyblue', ha='center', fontsize=10)
-
-plt.xlabel('Data', fontsize=12)
-plt.ylabel('Ocorrências', fontsize=12)
-plt.ylim(0, max(ocorrencias_por_mes.values) + 20)
-plt.xticks(rotation=45, ha='right')
-plt.tight_layout()
-plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.2)
-st.pyplot(plt)
