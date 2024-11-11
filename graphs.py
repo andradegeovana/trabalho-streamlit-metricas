@@ -39,7 +39,7 @@ plt.subplots_adjust(hspace=0.5)
 st.pyplot(plt)
 
 st.write('## Ocorrências por assunto')
-plt.figure(figsize=(8.4, 6.8))
+plt.figure(figsize=(9.4, 6.8))
 df['Assunto'].value_counts().plot(kind='bar', color='skyblue')
 plt.xlabel('Assunto')
 plt.ylabel('Ocorrências')
