@@ -10,7 +10,7 @@ st.title('Análise Relatório de Serviços de TI')
 st.write('## Dados Carregados')
 st.dataframe(df)
 
-st.write('## Ocorrências por departamento')
+st.write('## Contagem de tipo')
 plt.figure()
 colors = ('lime', 'skyblue', 'yellow', 'orange')
 df['Tipo'].value_counts().plot(kind='pie', autopct='%1.1f%%', colors=colors)
