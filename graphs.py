@@ -76,4 +76,19 @@ plt.tight_layout()
 plt.subplots_adjust(hspace=0.5)
 st.pyplot(plt)
 
+open_or_awaiting = df[(df['Status'] == 'Em Progresso') | 
+                        (df['Status'].str.contains('Aguardando'))]
+
+status_counts = open_or_awaiting['Status'].value_counts()
+
+st.write('## Status das ocorrências - gargalo no fluxo de chamados')
+plt.figure()
+status_counts.plot(kind='bar', color='skyblue', edgecolor='black')
+plt.xlabel('Status')
+plt.ylabel('Número de Ocorrências')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.subplots_adjust(hspace=0.5)
+st.pyplot(plt)
+
 
