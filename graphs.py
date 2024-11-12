@@ -77,7 +77,9 @@ plt.subplots_adjust(hspace=0.5)
 st.pyplot(plt)
 
 open_or_awaiting = df[(df['Status'] == 'Em Progresso') | 
-                        (df['Status'].str.contains('Aguardando'))]
+                        (df['Status'].str.contains('Aguardando')) |
+                        (df['Status'].str.contains('Aberto')) | 
+                        (df['Status'].str.contains('Fechado'))]
 
 status_counts = open_or_awaiting['Status'].value_counts()
 
